@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Natalia Gastelo" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <title>Project 1: Exploratory Data Analysis</title>
+    <meta name="generator" content="Hugo 0.79.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+    
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+    
+  </head>
+
+  <body>
+    <div id="wrap">
+      
+      <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../../"><i class="fa fa-home"></i></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+        <li><a href="../../post/">BLOG</a></li>
+        
+        <li><a href="../../projects/">PROJECTS</a></li>
+        
+        <li><a href="../../resume/">RESUME</a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      <div class="container">
+        <div class="blog-post">
+          <h3>
+            <strong><a href="../../project/project1/">Project 1: Exploratory Data Analysis</a></strong>
+          </h3>
+        </div>
+ 
+<div class="blog-title">
+          <h4>
+         December 9, 2020 
+            &nbsp;&nbsp;
+            
+          </h4>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="blogpost">
+              
+
+
+<div id="natlia-gastelo-ng22639" class="section level2">
+<h2>Natlia Gastelo (ng22639)</h2>
+<div id="introduction-4-pts-write-a-narrative-introductory-paragraph-or-two-describing-the-datasets-you-have-chosen-the-variables-they-contain-how-they-were-acquired-and-why-they-are-interesting-to-you.-expand-on-potential-associations-you-may-expect-if-any." class="section level4">
+<h4>Introduction (4 pts) Write a narrative introductory paragraph or two describing the datasets you have chosen, the variables they contain, how they were acquired, and why they are interesting to you. Expand on potential associations you may expect, if any.</h4>
+<pre class="r"><code>library(tidyverse)
+cricket1 &lt;- read_csv(&quot;~/cricket1.csv&quot;)
+cricket2 &lt;- read_csv(&quot;~/cricket2.csv&quot;)
+glimpse(cricket1)</code></pre>
+<pre><code>## Rows: 76
+## Columns: 4
+## $ CricketNumber &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+## $ Temp          &lt;dbl&gt; 14.0, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15.0, 1…
+## $ ChirpsPerHour &lt;dbl&gt; 64.0, 68.2, 76.3, 65.5, 72.4, 69.7, 69.6, 66.7, 79.6, 7…
+## $ Rain          &lt;chr&gt; &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;, …</code></pre>
+<pre class="r"><code>glimpse(cricket2)</code></pre>
+<pre><code>## Rows: 76
+## Columns: 4
+## $ CricketNumber   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…
+## $ Temp            &lt;dbl&gt; 14.0, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15.0,…
+## $ JumpPerHour     &lt;dbl&gt; 156.2500, 146.6276, 131.0616, 152.6718, 138.1215, 143…
+## $ PeopleWalkingBy &lt;dbl&gt; 103, 103, 5, 54, 108, 94, 5, 55, 79, 12, 88, 90, 69, …</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(cluster)</code></pre>
+<p><em>In my first dataset (cricket1) I have 4 variables and 76 observations. In my second dataset (cricket2) I have 4 varaibles. The tao data sets include chirps and jumps per hour of 76 different crickets and it also includes the temp at which these observations were recorded and whether it was raining.I aquired my datasets from google after looking at different websites with datasets that loooked interesting. I found this dataset interesting because I.....I expect that there will be a positive correlation between the different numeric variables.</em></p>
+</div>
+<div id="tidying-rearranging-widelong-8-pts-tidy-the-datasets-using-the-tidyr-functions-pivot_longergather-andor-pivot_widerspread.if-you-data-sets-are-already-tidy-be-sure-to-use-those-functions-somewhere-else-in-your-project.-document-the-process-describe-in-words-what-was-done-per-the-instructions" class="section level4">
+<h4>Tidying: Rearranging Wide/Long (8 pts) Tidy the datasets (using the <code>tidyr</code> functions <code>pivot_longer</code>/<code>gather</code> and/or <code>pivot_wider</code>/<code>spread</code>).If you data sets are already tidy, be sure to use those functions somewhere else in your project. Document the process (describe in words what was done per the instructions)</h4>
+<p><em>I used pivot longer later in the project to create a correlation heatmap of my numeric variables. I used pivot longer to get everything but the first column.</em></p>
+</div>
+<div id="joiningmerging-8-pts-join-your-datasets-into-one-using-a-dplyr-join-function.-if-you-have-multiple-observations-on-the-joining-variable-in-either-dataset-fix-this-by-collapsing-via-summarize.-discuss-the-process-in-words-including-why-you-chose-the-join-you-did.-discuss-which-cases-were-dropped-if-any-and-potential-problems-with-this" class="section level4">
+<h4>Joining/Merging (8 pts) Join your datasets into one using a <code>dplyr</code> join function. If you have multiple observations on the joining variable in either dataset, fix this by collapsing via summarize. Discuss the process in words, including why you chose the join you did. Discuss which cases were dropped, if any, and potential problems with this</h4>
+<pre class="r"><code>cricket_joined &lt;- full_join(cricket1, cricket2)
+glimpse(cricket_joined)</code></pre>
+<pre><code>## Rows: 76
+## Columns: 6
+## $ CricketNumber   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…
+## $ Temp            &lt;dbl&gt; 14.0, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15.0,…
+## $ ChirpsPerHour   &lt;dbl&gt; 64.0, 68.2, 76.3, 65.5, 72.4, 69.7, 69.6, 66.7, 79.6,…
+## $ Rain            &lt;chr&gt; &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;Y&quot;, &quot;N&quot;…
+## $ JumpPerHour     &lt;dbl&gt; 156.2500, 146.6276, 131.0616, 152.6718, 138.1215, 143…
+## $ PeopleWalkingBy &lt;dbl&gt; 103, 103, 5, 54, 108, 94, 5, 55, 79, 12, 88, 90, 69, …</code></pre>
+<p><em>In the two datasets that I have there was two common numeric variables, therefore I decided to do a full_join by joining both datasets by those two common variables. There was not any rows or columns that were lost after joining the two datasets together.</em></p>
+</div>
+<div id="wrangling-40-pts-use-all-six-core-dplyr-functions-in-the-service-of-generating-summary-statistics-18-pts.-use-mutate-at-least-once-to-generate-a-variable-that-is-a-function-of-at-least-one-other-variable.-compute-at-least-10-summary-statistics-for-using-summarize-and-summarize-with-group_by-18-pts.-use-at-least-5-unique-functions-inside-of-summarize-e.g.-mean-sd.-at-least-2-of-these-should-group-by-a-categorical-variable.-create-one-by-dichotomizing-a-numeric-if-necessary.-if-applicable-at-least-1-of-these-should-group-by-two-categorical-variables.-strongly-encouraged-to-create-a-correlation-matrix-with-cor-on-your-numeric-variables.-summarizediscuss-all-results-in-no-more-than-two-paragraphs-4-pts" class="section level4">
+<h4>Wrangling (40 pts) Use all six core <code>dplyr</code> functions in the service of generating summary statistics (18 pts). Use mutate at least once to generate a variable that is a function of at least one other variable. Compute at least 10 summary statistics for using summarize and summarize with group_by (18 pts). Use at least 5 unique functions inside of summarize (e.g., mean, sd). At least 2 of these should group by a categorical variable. Create one by dichotomizing a numeric if necessary. If applicable, at least 1 of these should group by two categorical variables. Strongly encouraged to create a correlation matrix with <code>cor()</code> on your numeric variables. Summarize/discuss all results in no more than two paragraphs (4 pts)</h4>
+<pre class="r"><code>cricket_joined %&gt;% filter(Rain == &quot;Y&quot;)</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1             1  14            64   Y            156.             103
+## 2             4  14.5          65.5 Y            153.              54
+## 3             7  14.8          69.6 Y            144.               5
+## 4            10  15.2          71   Y            141.              12
+## 5            12  15.4          69.4 Y            144.              90
+## 6            17  16.2          68.4 Y            146.               1
+## 7            31  17.5          82.6 Y            121.              95
+## 8            40  18.4          84.3 Y            119.             104</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% filter(Rain == &quot;N&quot;)</code></pre>
+<pre><code>## # A tibble: 68 x 6
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1             2  14.3          68.2 N            147.             103
+##  2             3  14.4          76.3 N            131.               5
+##  3             5  14.6          72.4 N            138.             108
+##  4             6  14.7          69.7 N            143.              94
+##  5             8  14.9          66.7 N            150.              55
+##  6             9  15            79.6 N            126.              79
+##  7            11  15.3          74.5 N            134.              88
+##  8            13  15.5          75.2 N            133.              69
+##  9            14  15.8          75.6 N            132.              24
+## 10            15  16            71.6 N            140.              14
+## # … with 58 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% filter(Temp &lt;= 20 &amp; Rain == &quot;N&quot;)</code></pre>
+<pre><code>## # A tibble: 48 x 6
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1             2  14.3          68.2 N            147.             103
+##  2             3  14.4          76.3 N            131.               5
+##  3             5  14.6          72.4 N            138.             108
+##  4             6  14.7          69.7 N            143.              94
+##  5             8  14.9          66.7 N            150.              55
+##  6             9  15            79.6 N            126.              79
+##  7            11  15.3          74.5 N            134.              88
+##  8            13  15.5          75.2 N            133.              69
+##  9            14  15.8          75.6 N            132.              24
+## 10            15  16            71.6 N            140.              14
+## # … with 38 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% arrange(desc(JumpPerHour))</code></pre>
+<pre><code>## # A tibble: 76 x 6
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1             1  14            64   Y            156.             103
+##  2             4  14.5          65.5 Y            153.              54
+##  3             8  14.9          66.7 N            150.              55
+##  4             2  14.3          68.2 N            147.             103
+##  5            17  16.2          68.4 Y            146.               1
+##  6            12  15.4          69.4 Y            144.              90
+##  7             7  14.8          69.6 Y            144.               5
+##  8             6  14.7          69.7 N            143.              94
+##  9            10  15.2          71   Y            141.              12
+## 10            15  16            71.6 N            140.              14
+## # … with 66 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% arrange(PeopleWalkingBy)</code></pre>
+<pre><code>## # A tibble: 76 x 6
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1            17  16.2          68.4 Y            146.               1
+##  2            39  18.3          84.3 N            119.               1
+##  3            42  18.6          88.3 N            113.               4
+##  4             3  14.4          76.3 N            131.               5
+##  5             7  14.8          69.6 Y            144.               5
+##  6            24  16.9          85.1 N            118.               5
+##  7            30  17.4          84.3 N            119.               7
+##  8            61  20.5          93.4 N            107.               7
+##  9            22  16.7          84   N            119.               8
+## 10            10  15.2          71   Y            141.              12
+## # … with 66 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% select(Temp, &quot;ChirpsPerHour&quot;, &quot;JumpPerHour&quot;)</code></pre>
+<pre><code>## # A tibble: 76 x 3
+##     Temp ChirpsPerHour JumpPerHour
+##    &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+##  1  14            64          156.
+##  2  14.3          68.2        147.
+##  3  14.4          76.3        131.
+##  4  14.5          65.5        153.
+##  5  14.6          72.4        138.
+##  6  14.7          69.7        143.
+##  7  14.8          69.6        144.
+##  8  14.9          66.7        150.
+##  9  15            79.6        126.
+## 10  15.2          71          141.
+## # … with 66 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% group_by(PeopleWalkingBy)</code></pre>
+<pre><code>## # A tibble: 76 x 6
+## # Groups:   PeopleWalkingBy [54]
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1             1  14            64   Y            156.             103
+##  2             2  14.3          68.2 N            147.             103
+##  3             3  14.4          76.3 N            131.               5
+##  4             4  14.5          65.5 Y            153.              54
+##  5             5  14.6          72.4 N            138.             108
+##  6             6  14.7          69.7 N            143.              94
+##  7             7  14.8          69.6 Y            144.               5
+##  8             8  14.9          66.7 N            150.              55
+##  9             9  15            79.6 N            126.              79
+## 10            10  15.2          71   Y            141.              12
+## # … with 66 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% mutate(Rain2 = recode(Rain, Y = &quot;Yes&quot;, N = &quot;No&quot;))</code></pre>
+<pre><code>## # A tibble: 76 x 7
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy Rain2
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;
+##  1             1  14            64   Y            156.             103 Yes  
+##  2             2  14.3          68.2 N            147.             103 No   
+##  3             3  14.4          76.3 N            131.               5 No   
+##  4             4  14.5          65.5 Y            153.              54 Yes  
+##  5             5  14.6          72.4 N            138.             108 No   
+##  6             6  14.7          69.7 N            143.              94 No   
+##  7             7  14.8          69.6 Y            144.               5 Yes  
+##  8             8  14.9          66.7 N            150.              55 No   
+##  9             9  15            79.6 N            126.              79 No   
+## 10            10  15.2          71   Y            141.              12 Yes  
+## # … with 66 more rows</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(n_distinct)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour  Rain JumpPerHour PeopleWalkingBy
+##           &lt;int&gt; &lt;int&gt;         &lt;int&gt; &lt;int&gt;       &lt;int&gt;           &lt;int&gt;
+## 1            76    75            66     2          66              54</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% filter(Rain == &quot;N&quot;) %&gt;% filter(PeopleWalkingBy &gt; 
+    100)</code></pre>
+<pre><code>## # A tibble: 13 x 6
+##    CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##            &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+##  1             2  14.3          68.2 N            147.             103
+##  2             5  14.6          72.4 N            138.             108
+##  3            23  16.8          80.3 N            125.             112
+##  4            33  17.7          84.3 N            119.             102
+##  5            34  17.8          81.2 N            123.             101
+##  6            35  17.9          83.3 N            120.             112
+##  7            36  18            84.9 N            118.             101
+##  8            44  18.8          86.8 N            115.             112
+##  9            58  20.2          91.3 N            110.             107
+## 10            62  20.6          94.1 N            106.             105
+## 11            63  20.7          98.2 N            102.             115
+## 12            64  20.8          98.6 N            101.             111
+## 13            68  21.2          96   N            104.             105</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(sd)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour  Rain JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1          22.1  2.27          9.48    NA        14.1            36.9</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(mean)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour  Rain JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1          38.5  18.2          85.4    NA        119.            63.8</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(var)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour  Rain JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1          488.  5.15          89.8    NA        199.           1363.</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(min)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1             1    14            64 N            99.7               1</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% summarize_all(max)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
+##           &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;           &lt;dbl&gt;
+## 1            76    22          100. Y            156.             115</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% filter(Temp &gt; 16) %&gt;% summarize(sd(ChirpsPerHour, 
+    na.rm = T)) %&gt;% group_by(Rain = &quot;N&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+## # Groups:   Rain [1]
+##   `sd(ChirpsPerHour, na.rm = T)` Rain 
+##                            &lt;dbl&gt; &lt;chr&gt;
+## 1                           6.74 N</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% filter(Temp &gt; 16) %&gt;% summarize(mean(ChirpsPerHour, 
+    na.rm = T)) %&gt;% group_by(Rain = &quot;N&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+## # Groups:   Rain [1]
+##   `mean(ChirpsPerHour, na.rm = T)` Rain 
+##                              &lt;dbl&gt; &lt;chr&gt;
+## 1                             88.9 N</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% group_by(Rain == &quot;N&quot;) %&gt;% filter(PeopleWalkingBy &gt; 
+    100) %&gt;% summarize(mean(JumpPerHour), na.rm = T)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   `Rain == &quot;N&quot;` `mean(JumpPerHour)` na.rm
+##   &lt;lgl&gt;                       &lt;dbl&gt; &lt;lgl&gt;
+## 1 FALSE                        137. TRUE 
+## 2 TRUE                         117. TRUE</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% select(ChirpsPerHour, JumpPerHour) %&gt;% cor %&gt;% 
+    round(3)</code></pre>
+<pre><code>##               ChirpsPerHour JumpPerHour
+## ChirpsPerHour         1.000      -0.992
+## JumpPerHour          -0.992       1.000</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% select(ChirpsPerHour, Temp) %&gt;% cor %&gt;% round(3)</code></pre>
+<pre><code>##               ChirpsPerHour  Temp
+## ChirpsPerHour         1.000 0.956
+## Temp                  0.956 1.000</code></pre>
+<pre class="r"><code>cricket_joined %&gt;% select(JumpPerHour, Temp) %&gt;% cor %&gt;% round(3)</code></pre>
+<pre><code>##             JumpPerHour   Temp
+## JumpPerHour       1.000 -0.931
+## Temp             -0.931  1.000</code></pre>
+<p><em>The standar deviation of chirps per hour when temperature is greater than 16 and rain is equal to &quot;N&quot; is 6.738. The mean value of chirps per hour when temperature is greater than 16 and rain is equal to &quot;N&quot; is 88.93. Lastly, the mean value of jumps per hour when rain is qual to &quot;N&quot; and people walking by is greater than 100 is 117.486. The correlation between chirps per hour and jumps per hour is -.992. The correlation between chirps per hour and temperature is .956. The correlation between jumps per hour and temperature is -.931. </em></p>
+</div>
+<div id="visualizing-30-pts-create-a-correlation-heatmap-of-your-numeric-variables.-create-two-effective-polished-plots-with-ggplot.-each-plot-should-map-3-variables-to-aesthetics.-each-plot-should-have-a-title-and-clean-labeling-for-all-mappings.-change-at-least-one-default-theme-element-and-color-for-at-least-one-mapping-per-plot.-for-at-least-one-plot-add-more-tick-marks-x-y-or-both-than-are-given-by-default.-for-at-least-one-plot-use-the-statsummary-function.-supporting-paragraph-or-two-for-each-plot-describing-the-relationshipstrends-that-are-apparent." class="section level4">
+<h4>Visualizing (30 pts) Create a correlation heatmap of your numeric variables. Create two effective, polished plots with ggplot. Each plot should map 3+ variables to aesthetics. Each plot should have a title and clean labeling for all mappings. Change at least one default theme element and color for at least one mapping per plot. For at least one plot, add more tick marks (x, y, or both) than are given by default. For at least one plot, use the stat=&quot;summary&quot; function. Supporting paragraph or two (for each plot) describing the relationships/trends that are apparent.</h4>
+<pre class="r"><code>ggplot(data = cricket_joined, aes(x = ChirpsPerHour, y = JumpPerHour)) + geom_point(color=&quot;Black&quot;) + geom_line(color=&quot;Purple&quot;)</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(data = cricket_joined, aes(x = ChirpsPerHour, y = JumpPerHour)) + geom_point(size=4, aes(color = Temp))</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(cricket_joined, aes(Temp))+ geom_bar(aes(y=JumpPerHour,fill=Rain), stat=&quot;summary&quot;, fun=mean) + theme(axis.text = element_text(size=14))</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>cricket_cor &lt;- cricket_joined %&gt;% select_if(is.numeric) %&gt;% column_to_rownames(var=&quot;CricketNumber&quot;)
+cricket_cor2 &lt;- cricket_cor %&gt;% cor
+tidycor &lt;- cricket_cor2 %&gt;% as.data.frame %&gt;% rownames_to_column(&quot;var1&quot;) %&gt;%
+  pivot_longer(-1,names_to=&quot;var2&quot;,values_to=&quot;correlation&quot;)
+
+tidycor %&gt;% ggplot(aes(var1,var2,fill=correlation)) + geom_tile() +
+  scale_fill_gradient2(low=&quot;pink&quot;,mid=&quot;purple&quot;, high=&quot;white&quot;) + geom_text(aes(label=round(correlation,2)),color = &quot;black&quot;, size = 4)+ #overlay values
+  theme(axis.text.x = element_text(angle = 90, hjust=1))+ 
+  coord_fixed() </code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-4-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><em>By looking at my correlation heatmap we can clearly see that there is a positive correlation between chirps per hour and temperature.There is a highly negative corelation between jumps per hour and chirps per hour, as well as temperature and jump per hour. People walking by and jump per hour are slighly negatively correlated. People walking by and chirps per hour are slighly positviely correlated.</em></p>
+</div>
+<div id="dimensionality-reduction-20-pts-either-k-meanspam-clustering-or-pca-inclusive-or-should-be-performed-on-at-least-three-numeric-variables-in-your-dataset.-all-relevant-steps-discussed-in-class.-a-visualization-of-the-clusters-or-the-first-few-principal-components-using-ggplot2.-supporting-paragraph-or-two-describing-results-found" class="section level4">
+<h4>Dimensionality Reduction (20 pts) Either k-means/PAM clustering or PCA (inclusive &quot;or&quot;) should be performed on at least three numeric variables in your dataset. All relevant steps discussed in class. A visualization of the clusters or the first few principal components (using ggplot2). Supporting paragraph or two describing results found</h4>
+<pre class="r"><code>pam_dat &lt;- cricket_joined %&gt;% select(JumpPerHour, ChirpsPerHour)
+sil_width &lt;- vector()
+for (i in 2:10) {
+    pam_fit &lt;- pam(pam_dat, k = i)
+    sil_width[i] &lt;- pam_fit$silinfo$avg.width
+}
+ggplot() + geom_line(aes(x = 1:10, y = sil_width)) + scale_x_continuous(name = &quot;k&quot;, 
+    breaks = 1:10)</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># pam2 &lt;-cricket_joined %&gt;% select(-Rain) %&gt;%
+# select(-CricketNumber) %&gt;% scale %&gt;% pam(3) pam2
+final &lt;- cricket_joined %&gt;% select(-Rain) %&gt;% select(-CricketNumber) %&gt;% 
+    scale %&gt;% as.data.frame
+pam2 &lt;- final %&gt;% pam(3)
+final &lt;- final %&gt;% mutate(cluster = as.factor(pam2$clustering))
+ggplot(final, aes(x = JumpPerHour, y = ChirpsPerHour, color = cluster)) + 
+    geom_point()</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>library(GGally)
+
+ggpairs(final, columns = 1:4, aes(color = cluster))</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-5-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot(pam2, which = 2)</code></pre>
+<p><img src="../../project/project1_files/figure-html/unnamed-chunk-5-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><em>Distribution of cluster 3 is highest in all of the 4 different numberic variables.The overall correlation for chirps per hour and temp is highly correlated. Based on average sillhouette width =.37 we can say that the structure is weak and could be artificial.</em></p>
+<p>...</p>
+</div>
+</div>
+
+            
+        <hr>         <div class="related-posts">
+                <h5>Related Posts</h5>
+                
+              </div> 
+            </div>
+          </div>
+
+   <hr>  <div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+
+    (function() {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var disqus_shortname = '';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div> 
+        </div>
+      </div>
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
+      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../js/docs.min.js"></script>
+<script src="../../js/main.js"></script>
+
+<script src="../../js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+  </body>
+</html>
