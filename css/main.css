@@ -4,7 +4,7 @@ html, body {
   background-color: #fff;
   font-family: 'Source Sans Pro', sans-serif;
   /* The html and body elements cannot have any padding or margin. */
-  border-top: 2px solid #f8971f;
+  border-top: 2px solid #ff66ff;
 }
 
 /* Wrapper for page content to push down footer */
@@ -23,8 +23,8 @@ html, body {
   margin-bottom: 10px;
 }
 .navbar-default {
-  background-color: #ffffff;
-  border-color: #ffffff;
+  background-color: #ff99ff;
+  border-color: #ff99ff;
 }
 .navbar-default .navbar-brand {
   color: #6b6b6b;
@@ -43,17 +43,17 @@ html, body {
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   color: #6b6b6b;
-  background-color: #ffffff;
+  background-color: #ff99ff;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   color: #6b6b6b;
-  background-color: #ffffff;
+  background-color: #ff99ff;
 }
 .navbar-default .navbar-toggle {
-  border-color: #ffffff;
+  border-color: #ff99ff;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #ffffff;
+  background-color: #ff99ff;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #6b6b6b;
@@ -77,7 +77,7 @@ html, body {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #6b6b6b;
-    background-color: #ffffff;
+    background-color: #ff1aff;
   }
 }
 
@@ -91,7 +91,7 @@ html, body {
   margin: 20px 0;
 }
 .container a {
-  color: #f8971f;
+  color: #ff66ff;
 }
 .container a:hover {
   color: #bf5700;
@@ -116,7 +116,7 @@ html, body {
   font-size: 15px;
 }
 .panel-default h4 a, h5 a {
-  color: #f8971f;
+  color: #ffccff;
 }
 .panel-default h4 a:hover, h5 a:hover {
   color: #bf5700;
@@ -189,7 +189,7 @@ html, body {
 	color: #6b6b6b;
 }
 div.footer{
-  border-bottom: 5px solid #f8971f;;
+  border-bottom: 5px solid #ffccff;;
 }
 /* Set the fixed height of the footer here */
 /*.footer {
