@@ -7,7 +7,7 @@
     <meta name="author" content="Natalia Gastelo" />
     
     <link rel="shortcut icon" type="image/x-icon" href="../../../../../img/favicon.ico">
-    <title>Test Post</title>
+    <title>R and Python</title>
     <meta name="generator" content="Hugo 0.79.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../../../../css/main.css" />
@@ -54,7 +54,7 @@
       <div class="container">
         <div class="blog-post">
           <h3>
-            <strong><a href="../../../../../post/2020/12/11/test-post/">Test Post</a></strong>
+            <strong><a href="../../../../../post/2020/12/11/test-post/">R and Python</a></strong>
           </h3>
         </div>
  
@@ -72,12 +72,40 @@
               
 
 
-<div id="heading-of-my-post" class="section level1">
-<h1>Heading of my post:</h1>
-<p>Content of my post</p>
-<div id="subheading" class="section level2">
-<h2>Subheading</h2>
-<p>More Content</p>
+<div id="reticulate" class="section level1">
+<h1>Reticulate:</h1>
+<p>Reticulate provides a robust set of features for &quot;combining&quot; Python and R statements. More specifically, it essentially lets you switch from one language to the other by calling Python from R, for example. Sometimes, it is easier to do something in Python or you must use a particular library that doesn't exist in R. Or, you need Python to perform an intensive matematical calculation or need a way to import/export datasets from various notebooks (R or Python). In these cases and many more, Reticulate can be a life saver as it lets best of both worlds in a seamless way.</p>
+<div id="python-and-r-studio" class="section level2">
+<h2>Python and R studio</h2>
+<p>Below are two examples of R and python working together.</p>
+<p>Example 1:</p>
+<pre class="r"><code>covid &lt;- &quot;Covid caused over 3,000 deaths in one day in the United States and over one million new cases in the span of five days in the United States. It has caused the most physical, social, and economic unrest (proportionally) when compared to other historical tragedies.&quot;</code></pre>
+<pre class="python"><code>news =&quot;U.S. News:&quot;
+print(news,r.covid)</code></pre>
+<pre><code>## U.S. News: Covid caused over 3,000 deaths in one day in the United States and over one million new cases in the span of five days in the United States. It has caused the most physical, social, and economic unrest (proportionally) when compared to other historical tragedies.</code></pre>
+<p>Example 2: We are taking the dataset quakes from R and we are using it in python to measure the central tendency and other aspects of the data.</p>
+<pre class="r"><code>quakes &lt;-quakes</code></pre>
+<pre class="python"><code>r.quakes.mag.mean()</code></pre>
+<pre><code>## 4.6204000000000001</code></pre>
+<pre class="python"><code>r.quakes.mag.median()</code></pre>
+<pre><code>## 4.6</code></pre>
+<pre class="python"><code>r.quakes.mag.max()</code></pre>
+<pre><code>## 6.4000000000000004</code></pre>
+<pre class="python"><code>r.quakes.mag.min()</code></pre>
+<pre><code>## 4.0</code></pre>
+<div id="python" class="section level3">
+<h3>Python</h3>
+<p>I personally like Python better than R because we can take a chunck of information and more easily filter out only the data that we want. Python provides many intuitive functions with simple syntax that can be used to sanitize, filter, and manipulate many varieties of data better than R. Below, we can extract just the numbers from the data using a simple regex expression. Python also let's you get away with mixing data types and has many interesting quirks, such as &quot;Python goes b&quot; + 10 * &quot;r&quot; lambda expressions, that make the user's life easier. As an example below, we want to extract just a list of numbers of covid cases from the information provided. To do that we can use the re.findall function, super easy!</p>
+<pre class="python"><code>import re
+string1= &quot;These are the average covid cases reported daily per a hundred thousand in the last seven days by state in the United States. Rhode Island, 115.2,    North Dakota (98.9), Indiana    97.1, Idaho 94.3, Alaska    90.5, Ohio  89.5, Nevada    89.4, Utah  89.4, Kansas    87.5, South Dakota  87.1, Tennessee 85.9, Minnesota 85.5, Delaware  82.4, Arizona   81.9, Nebraska  81.9, Oklahoma  81.2, New Mexico    80.9, Pennsylvania  78.6, Wyoming   77.8, Montana   77.6, Colorado  74.7, Wisconsin 74.6, Kentucky  73.1, Alabama   71.8, Illinois  71.7, Arkansas 68.9, West Virginia  68.6, Connecticut   67.2, California    67.1, Massachusetts 66.6, Mississippi   65.9, Michigan  62.8, New York* 58.8, New Jersey    57.1, New Hampshire 56.3, North Carolina    53.5, Iowa  53, Louisiana   52.9, South Carolina    52.3, Georgia   50.8, Missouri  49.6, Maryland  45.6, Virginia  45.4, Florida   43, Texas   40.3, New York City*    40.2, District of Columbia  39.3, Washington    37.9, Oregon    36, Puerto Rico 28.6, Maine 25.2, Vermont   17.6, Virgin Islands    16.4, Guam  9.5, Hawaii 6.3, Northern Mariana Islands   1.8, Federated States of Micronesia 0.6&quot;
+
+re.findall(&quot;\d+\.\d+&quot;, string1)</code></pre>
+<pre><code>## [&#39;115.2&#39;, &#39;98.9&#39;, &#39;97.1&#39;, &#39;94.3&#39;, &#39;90.5&#39;, &#39;89.5&#39;, &#39;89.4&#39;, &#39;89.4&#39;, &#39;87.5&#39;, &#39;87.1&#39;, &#39;85.9&#39;, &#39;85.5&#39;, &#39;82.4&#39;, &#39;81.9&#39;, &#39;81.9&#39;, &#39;81.2&#39;, &#39;80.9&#39;, &#39;78.6&#39;, &#39;77.8&#39;, &#39;77.6&#39;, &#39;74.7&#39;, &#39;74.6&#39;, &#39;73.1&#39;, &#39;71.8&#39;, &#39;71.7&#39;, &#39;68.9&#39;, &#39;68.6&#39;, &#39;67.2&#39;, &#39;67.1&#39;, &#39;66.6&#39;, &#39;65.9&#39;, &#39;62.8&#39;, &#39;58.8&#39;, &#39;57.1&#39;, &#39;56.3&#39;, &#39;53.5&#39;, &#39;52.9&#39;, &#39;52.3&#39;, &#39;50.8&#39;, &#39;49.6&#39;, &#39;45.6&#39;, &#39;45.4&#39;, &#39;40.3&#39;, &#39;40.2&#39;, &#39;39.3&#39;, &#39;37.9&#39;, &#39;28.6&#39;, &#39;25.2&#39;, &#39;17.6&#39;, &#39;16.4&#39;, &#39;9.5&#39;, &#39;6.3&#39;, &#39;1.8&#39;, &#39;0.6&#39;]</code></pre>
+<div class="figure">
+<img src="../../../../../post/2020-12-11-test-post_files/thumbnail_image.png" />
+
+</div>
+</div>
 </div>
 </div>
 

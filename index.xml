@@ -8,14 +8,12 @@
     <language>en-US</language>
     <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test Post</title>
+      <title>R and Python</title>
       <link>/post/2020/12/11/test-post/</link>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/2020/12/11/test-post/</guid>
-      <description> Heading of my post: Content of my post
-Subheading More Content
-  </description>
+      <description>Reticulate: Reticulate provides a robust set of features for &amp;quot;combining&amp;quot; Python and R statements. More specifically, it essentially lets you switch from one language to the other by calling Python from R, for example. Sometimes, it is easier to do something in Python or you must use a particular library that doesn&#39;t exist in R. Or, you need Python to perform an intensive matematical calculation or need a way to import/export datasets from various notebooks (R or Python).</description>
     </item>
     
     <item>
