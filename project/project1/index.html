@@ -75,7 +75,7 @@
 <div id="natlia-gastelo-ng22639" class="section level2">
 <h2>Natlia Gastelo (ng22639)</h2>
 <div id="Introduction:" class="section level4">
-<h4>Introduction (4 pts) Write a narrative introductory paragraph or two describing the datasets you have chosen, the variables they contain, how they were acquired, and why they are interesting to you. Expand on potential associations you may expect, if any.</h4>
+<h4>Introduction: </h4>
 <pre class="r"><code>library(tidyverse)
 cricket1 &lt;- read_csv(&quot;~/cricket1.csv&quot;)
 cricket2 &lt;- read_csv(&quot;~/cricket2.csv&quot;)
@@ -100,11 +100,11 @@ library(cluster)</code></pre>
 <p><em>In my first dataset (cricket1) I have 4 variables and 76 observations. In my second dataset (cricket2) I have 4 varaibles. The tao data sets include chirps and jumps per hour of 76 different crickets and it also includes the temp at which these observations were recorded and whether it was raining.I aquired my datasets from google after looking at different websites with datasets that loooked interesting. I found this dataset interesting because I.....I expect that there will be a positive correlation between the different numeric variables.</em></p>
 </div>
 <div id="tidying-rearranging-widelong-8-pts-tidy-the-datasets-using-the-tidyr-functions-pivot_longergather-andor-pivot_widerspread.if-you-data-sets-are-already-tidy-be-sure-to-use-those-functions-somewhere-else-in-your-project.-document-the-process-describe-in-words-what-was-done-per-the-instructions" class="section level4">
-<h4>Tidying: Rearranging Wide/Long (8 pts) Tidy the datasets (using the <code>tidyr</code> functions <code>pivot_longer</code>/<code>gather</code> and/or <code>pivot_wider</code>/<code>spread</code>).If you data sets are already tidy, be sure to use those functions somewhere else in your project. Document the process (describe in words what was done per the instructions)</h4>
+<h4>Tidying: Rearranging Wide/Long </h4>
 <p><em>I used pivot longer later in the project to create a correlation heatmap of my numeric variables. I used pivot longer to get everything but the first column.</em></p>
 </div>
 <div id="joiningmerging-8-pts-join-your-datasets-into-one-using-a-dplyr-join-function.-if-you-have-multiple-observations-on-the-joining-variable-in-either-dataset-fix-this-by-collapsing-via-summarize.-discuss-the-process-in-words-including-why-you-chose-the-join-you-did.-discuss-which-cases-were-dropped-if-any-and-potential-problems-with-this" class="section level4">
-<h4>Joining/Merging (8 pts) Join your datasets into one using a <code>dplyr</code> join function. If you have multiple observations on the joining variable in either dataset, fix this by collapsing via summarize. Discuss the process in words, including why you chose the join you did. Discuss which cases were dropped, if any, and potential problems with this</h4>
+<h4>Joining/Merging </h4>
 <pre class="r"><code>cricket_joined &lt;- full_join(cricket1, cricket2)
 glimpse(cricket_joined)</code></pre>
 <pre><code>## Rows: 76
@@ -118,7 +118,7 @@ glimpse(cricket_joined)</code></pre>
 <p><em>In the two datasets that I have there was two common numeric variables, therefore I decided to do a full_join by joining both datasets by those two common variables. There was not any rows or columns that were lost after joining the two datasets together.</em></p>
 </div>
 <div id="wrangling-40-pts-use-all-six-core-dplyr-functions-in-the-service-of-generating-summary-statistics-18-pts.-use-mutate-at-least-once-to-generate-a-variable-that-is-a-function-of-at-least-one-other-variable.-compute-at-least-10-summary-statistics-for-using-summarize-and-summarize-with-group_by-18-pts.-use-at-least-5-unique-functions-inside-of-summarize-e.g.-mean-sd.-at-least-2-of-these-should-group-by-a-categorical-variable.-create-one-by-dichotomizing-a-numeric-if-necessary.-if-applicable-at-least-1-of-these-should-group-by-two-categorical-variables.-strongly-encouraged-to-create-a-correlation-matrix-with-cor-on-your-numeric-variables.-summarizediscuss-all-results-in-no-more-than-two-paragraphs-4-pts" class="section level4">
-<h4>Wrangling (40 pts) Use all six core <code>dplyr</code> functions in the service of generating summary statistics (18 pts). Use mutate at least once to generate a variable that is a function of at least one other variable. Compute at least 10 summary statistics for using summarize and summarize with group_by (18 pts). Use at least 5 unique functions inside of summarize (e.g., mean, sd). At least 2 of these should group by a categorical variable. Create one by dichotomizing a numeric if necessary. If applicable, at least 1 of these should group by two categorical variables. Strongly encouraged to create a correlation matrix with <code>cor()</code> on your numeric variables. Summarize/discuss all results in no more than two paragraphs (4 pts)</h4>
+<h4>Wrangling: </h4>
 <pre class="r"><code>cricket_joined %&gt;% filter(Rain == &quot;Y&quot;)</code></pre>
 <pre><code>## # A tibble: 8 x 6
 ##   CricketNumber  Temp ChirpsPerHour Rain  JumpPerHour PeopleWalkingBy
@@ -322,7 +322,7 @@ glimpse(cricket_joined)</code></pre>
 <p><em>The standar deviation of chirps per hour when temperature is greater than 16 and rain is equal to &quot;N&quot; is 6.738. The mean value of chirps per hour when temperature is greater than 16 and rain is equal to &quot;N&quot; is 88.93. Lastly, the mean value of jumps per hour when rain is qual to &quot;N&quot; and people walking by is greater than 100 is 117.486. The correlation between chirps per hour and jumps per hour is -.992. The correlation between chirps per hour and temperature is .956. The correlation between jumps per hour and temperature is -.931. </em></p>
 </div>
 <div id="visualizing-30-pts-create-a-correlation-heatmap-of-your-numeric-variables.-create-two-effective-polished-plots-with-ggplot.-each-plot-should-map-3-variables-to-aesthetics.-each-plot-should-have-a-title-and-clean-labeling-for-all-mappings.-change-at-least-one-default-theme-element-and-color-for-at-least-one-mapping-per-plot.-for-at-least-one-plot-add-more-tick-marks-x-y-or-both-than-are-given-by-default.-for-at-least-one-plot-use-the-statsummary-function.-supporting-paragraph-or-two-for-each-plot-describing-the-relationshipstrends-that-are-apparent." class="section level4">
-<h4>Visualizing (30 pts) Create a correlation heatmap of your numeric variables. Create two effective, polished plots with ggplot. Each plot should map 3+ variables to aesthetics. Each plot should have a title and clean labeling for all mappings. Change at least one default theme element and color for at least one mapping per plot. For at least one plot, add more tick marks (x, y, or both) than are given by default. For at least one plot, use the stat=&quot;summary&quot; function. Supporting paragraph or two (for each plot) describing the relationships/trends that are apparent.</h4>
+<h4>Visualizing </h4>
 <pre class="r"><code>ggplot(data = cricket_joined, aes(x = ChirpsPerHour, y = JumpPerHour)) + geom_point(color=&quot;Black&quot;) + geom_line(color=&quot;Purple&quot;)</code></pre>
 <p><img src="../../project/project1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggplot(data = cricket_joined, aes(x = ChirpsPerHour, y = JumpPerHour)) + geom_point(size=4, aes(color = Temp))</code></pre>
